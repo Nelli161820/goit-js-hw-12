@@ -10,20 +10,28 @@
   <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
   <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-5401a4b0.js">
   <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-cf6910df.css">
-  <link rel="stylesheet" href="/goit-js-hw-12/assets/index-e617ef3b.css">
+  <link rel="stylesheet" href="/goit-js-hw-12/assets/index-dbd6c5f1.css">
 </head>
 
 <body>
-
-  <form class="searchForm" autocomplete="off">
-    <input type="text" name="search" class="searchInput" placeholder="Searh images...">
-    <button type="submit" class="btn">Search</button>
-  </form>
-  <div class="loader"></div>
-  <div class="gallery"></div>
-<button class="loadMoreBtn">Load more</button>
-
   
+
+<form class="searchForm" autocomplete="off" id="search-form">
+  <input type="text" name="search" class="searchInput" placeholder="Search images..." id="search-input">
+  <button type="submit" class="btn">Search</button>
+</form>
+
+<div class="loader" id="loading-indicator"></div>
+
+<div class="gallery" id="gallery-container"></div>
+
+<button type="button" class="loadMoreBtn" id="load-more-btn">Load more</button>
+
+<div id="end-of-results-message" style="display: none;">We're sorry, but you've reached the end of search results.</div>
+
+
+
+
 </body>
 
 </html>
