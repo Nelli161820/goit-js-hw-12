@@ -25,8 +25,7 @@ export class PixabayAPI {
     });
 
     if (response.status === 200) {
-      this.page++;
-      console.log('API Response:', response.data);
+        
       return response.data;
     } else {
       console.error('Error fetching photos:', response.statusText);
