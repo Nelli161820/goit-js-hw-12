@@ -21,7 +21,6 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 150,
 });
-endMessage.textContent = "We're sorry, but you've reached the end of search results.";
 endMessage.style.display = 'none';
 loadMoreBtn.style.display = 'none';
 let card = 0;
@@ -46,14 +45,14 @@ async function handleSearchFormSubmit(event) {
   endMessage.style.display = 'none';
   pixabayAPI.query = searchInput.value.trim();
   if (search === '') {
-      iziToast.error({
+    loader.style.display = 'none';
+    iziToast.error({
       title: 'Error',
       message: 'Please enter a search query.',
     });
     return;
   }
   searchAndDisplayResults();
-  
 }
 function hideLoadMoreButton() {
   loadMoreBtn.style.display = 'none';
@@ -62,11 +61,10 @@ async function searchAndDisplayResults() {
   try {
     const result = await pixabayAPI.fetchPhotosByQuery();
     if (result.hits.length === 0) {
-      iziToast.error({
-        timeout: 1000,
-        position: 'topRight',
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
+        iziToast.error({
+            timeout: 1000,
+            position: 'topRight',
+            message: 'Sorry, there are no images matching your search query. Please try again!',
       });
     }
     const lastPage = Math.ceil(result.totalHits / pixabayAPI.perPage);
@@ -82,7 +80,12 @@ async function searchAndDisplayResults() {
     }
     if (lastPage === pixabayAPI.page) {
       hideLoadMoreButton();
-      endMessage.style.display = 'block';
+      iziToast.error({
+            timeout: 1000,
+            position: 'topRight',
+            message: "We're sorry, but you've reached the end of search results.",
+      });
+
     }
   } finally {
     loader.style.display = 'none';
